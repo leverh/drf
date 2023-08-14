@@ -1,21 +1,25 @@
 from rest_framework import generics, permissions
 from drf_api.permissions import IsOwnerOrReadOnly
-from .models import Like
-from .serializers import LikeSerializer
+from likes.models import Like
+from likes.serializers import LikeSerializer
+
 
 class LikeList(generics.ListCreateAPIView):
-    """ List all likes. Create a like if authenticated. The perform_create method associates the like with the logged in user. """
-
+    """
+    List likes or create a like if logged in.
+    """
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     serializer_class = LikeSerializer
     queryset = Like.objects.all()
-    
+
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
 
-class LikeDetail(generics.RetrieveDestroyAPIView):
-    """ Retrieve a like. No Update view, as users can only like or unlike a post. Destroy a like, i.e. unlike a post if owner of that like """
 
+class LikeDetail(generics.RetrieveDestroyAPIView):
+    """
+    Retrieve a like or delete it by id if user owns it.
+    """
     permission_classes = [IsOwnerOrReadOnly]
-    queryset = Like.objects.all()
     serializer_class = LikeSerializer
+    queryset = Like.objects.all()
