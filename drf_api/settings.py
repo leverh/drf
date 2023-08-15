@@ -71,7 +71,8 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = 'DEV' in os.environ
 
 ALLOWED_HOSTS = ['8000-leverh-drf-3lech7xyrcc.ws-eu103.gitpod.io',
-                 os.environ.get('ALLOWED_HOST'), 
+                 os.environ.get('ALLOWED_HOST'),
+                 'drfapiappy-f779baf3bc38.herokuapp.com', 
                 ]
 
 
