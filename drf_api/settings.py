@@ -130,7 +130,8 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'drf_api.urls'
 
 
-CORS_ALLOWED_ORIGINS = 'https://react-app-1-d1348b785b3f.herokuapp.com'
+CORS_ALLOWED_ORIGINS = ['https://react-app-1-d1348b785b3f.herokuapp.com']
+
 
 
 
